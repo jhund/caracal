@@ -45,7 +45,7 @@ module Caracal
                   xml.send 'w:keepLines',    { 'w:val' => '0' }
                   xml.send 'w:widowControl', { 'w:val' => '1' }
                   xml.send 'w:spacing',      spacing_options(s, true)
-                  xml.send 'w:ind',          { 'w:left' => '0', 'w:firstLine' => '0', 'w:right' => '0' }
+                  xml.send 'w:ind',          indent_options(s, true)
                   xml.send 'w:jc',           { 'w:val' => s.style_align.to_s }
                 end
               end
@@ -74,6 +74,7 @@ module Caracal
                   xml.send 'w:keepLines',         { 'w:val' => '0' }
                   xml.send 'w:widowControl',      { 'w:val' => '1' }
                   xml.send 'w:spacing',           spacing_options(s)                              unless spacing_options(s).nil?
+                  xml.send 'w:ind',               indent_options(s)                               unless indent_options(s).nil?
                   xml.send 'w:contextualSpacing', { 'w:val' => '1' }
                   xml.send 'w:jc',                { 'w:val' => s.style_align.to_s }               unless s.style_align.nil?
                 end
@@ -137,6 +138,21 @@ module Caracal
           options['w:before']   = top      unless top.nil?
           options['w:after']    = bottom   unless bottom.nil?
           options['w:line']     = line     unless line.nil?
+        end
+        options
+      end
+
+      def indent_options(style, default=false)
+        left       = (default) ? style.style_left.to_i  : style.style_left
+        right      = (default) ? style.style_right.to_i : style.style_right
+        first_line = (default) ? style.style_first_line.to_i : style.style_first_line
+
+        options = nil
+        if [left, right, first_line].compact.size > 0
+          options                = {}
+          options['w:left']      = left        unless left.nil?
+          options['w:right']     = right       unless right.nil?
+          options['w:firstLine'] = first_line  unless first_line.nil?
         end
         options
       end

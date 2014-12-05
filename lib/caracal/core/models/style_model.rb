@@ -24,7 +24,10 @@ module Caracal
         const_set(:DEFAULT_STYLE_ALIGN,      :left)
         const_set(:DEFAULT_STYLE_LINE,       360)        # 0.25in in twips
         const_set(:DEFAULT_STYLE_TOP,        0)          # 0.0in  in twips
+        const_set(:DEFAULT_STYLE_RIGHT,      0)          # 0.0in  in twips
         const_set(:DEFAULT_STYLE_BOTTOM,     0)          # 0.0in  in twips
+        const_set(:DEFAULT_STYLE_LEFT,       0)          # 0.0in  in twips
+        const_set(:DEFAULT_STYLE_FIRST_LINE, 0)          # 0.0in  in twips
         const_set(:DEFAULT_STYLE_BASE,       'Normal')
         const_set(:DEFAULT_STYLE_NEXT,       'Normal')
 
@@ -41,7 +44,10 @@ module Caracal
         attr_reader :style_caps
         attr_reader :style_align
         attr_reader :style_top
+        attr_reader :style_right
         attr_reader :style_bottom
+        attr_reader :style_left
+        attr_reader :style_first_line
         attr_reader :style_line
         attr_reader :style_base
         attr_reader :style_next
@@ -64,7 +70,10 @@ module Caracal
             @style_caps       ||= DEFAULT_STYLE_CAPS
             @style_align      ||= DEFAULT_STYLE_ALIGN
             @style_top        ||= DEFAULT_STYLE_TOP
+            @style_right      ||= DEFAULT_STYLE_RIGHT
             @style_bottom     ||= DEFAULT_STYLE_BOTTOM
+            @style_left       ||= DEFAULT_STYLE_LEFT
+            @style_first_line ||= DEFAULT_STYLE_FIRST_LINE
             @style_line       ||= DEFAULT_STYLE_LINE
           end
         end
@@ -84,7 +93,7 @@ module Caracal
         end
 
         # integers
-        [:bottom, :size, :line, :top].each do |m|
+        [:bottom, :size, :line, :top, :right, :left, :first_line].each do |m|
           define_method "#{ m }" do |value|
             instance_variable_set("@style_#{ m }", value.to_i)
           end
@@ -126,7 +135,7 @@ module Caracal
         private
 
         def option_keys
-          [:bold, :italic, :underline, :caps, :top, :bottom, :size, :line, :id, :name, :color, :font, :align]
+          [:bold, :italic, :underline, :caps, :top, :right, :bottom, :left, :first_line, :size, :line, :id, :name, :color, :font, :align]
         end
 
       end
