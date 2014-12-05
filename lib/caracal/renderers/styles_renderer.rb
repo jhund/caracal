@@ -96,6 +96,7 @@ module Caracal
               xml.send 'w:tblPr' do
                 xml.send 'w:tblStyleRowBandSize', { 'w:val' => '1' }
                 xml.send 'w:tblStyleColBandSize', { 'w:val' => '1' }
+                xml.send 'w:tblInd', { 'w:w' => '720', 'w:type' => 'dxa' }
               end
               %w(band1Horz band1Vert band2Horz band2Vert).each do |type|
                 xml.send 'w:tblStylePr', { 'w:type' => type }
