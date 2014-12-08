@@ -289,7 +289,7 @@ module Caracal
               row.each do |tc|
                 xml.send 'w:tc' do
                   xml.send 'tcPr' do
-                    xml.send 'w:shd', { 'w:fill' => tc.cell_background }
+                    xml.send 'w:shd', { 'w:val' => 'clear', 'w:fill' => tc.cell_background }
                     xml.send 'w:tcMar' do
                       %w(top left bottom right).each do |d|
                         xml.send "w:#{ d }", { 'w:w' => tc.send("cell_margin_#{ d }").to_i, 'w:type' => 'dxa' }
