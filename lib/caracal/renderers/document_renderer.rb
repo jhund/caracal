@@ -253,9 +253,9 @@ module Caracal
           xml.send 'w:tblPr' do
             xml.send 'w:tblStyle',   { 'w:val' => 'DefaultTable' }
             xml.send 'w:bidiVisual', { 'w:val' => '0' }
-            xml.send 'w:tblW',       { 'w:w'   => model.table_width.to_f, 'w:type' => 'dxa' }
-            xml.send 'w:tblInd',     { 'w:w'   => '0.0', 'w:type' => 'dxa' }
             xml.send 'w:jc',         { 'w:val' => model.table_align }
+            xml.send 'w:tblW',       { 'w:w'   => model.table_width.to_i, 'w:type' => 'dxa' }
+            xml.send 'w:tblInd',     { 'w:w'   => '0', 'w:type' => 'dxa' }
             unless borders.empty?
               xml.send 'w:tblBorders' do
                 borders.each do |m|
@@ -292,7 +292,7 @@ module Caracal
                     xml.send 'w:shd', { 'w:fill' => tc.cell_background }
                     xml.send 'w:tcMar' do
                       %w(top left bottom right).each do |d|
-                        xml.send "w:#{ d }", { 'w:w' => tc.send("cell_margin_#{ d }").to_f, 'w:type' => 'dxa' }
+                        xml.send "w:#{ d }", { 'w:w' => tc.send("cell_margin_#{ d }").to_i, 'w:type' => 'dxa' }
                       end
                     end
                   end
