@@ -56,7 +56,7 @@ module Caracal
             xml.send 'w:style', { 'w:styleId' => 'TableNormal', 'w:type' => 'table', 'w:default' => '1' } do
               xml.send 'w:name', { 'w:val' => 'Table Normal'}
               xml.send 'w:pPr' do
-                xml.send 'w:spacing', { 'w:lineRule' => 'auto', 'w:line' => (s.style_size * 20 * 1.15), 'w:before' => '0', 'w:after' => '0' }
+                xml.send 'w:spacing', { 'w:lineRule' => 'auto', 'w:line' => (s.style_size * 20 * 1.15).round, 'w:before' => '0', 'w:after' => '0' }
               end
             end
             default_id = s.style_id
