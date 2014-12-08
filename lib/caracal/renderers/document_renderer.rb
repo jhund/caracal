@@ -130,6 +130,7 @@ module Caracal
                       xml.send 'pic:spPr' do
                         xml.send 'a:xfrm' do
                           xml.send 'a:ext', { cx: model.formatted_width, cy: model.formatted_height }
+                          xml.send 'a:off', { x: 0, y: 0 }
                         end
                         xml.send 'a:prstGeom', { prst: 'rect' }
                         xml.send 'a:ln'
