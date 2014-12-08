@@ -252,10 +252,10 @@ module Caracal
         xml.send 'w:tbl' do
           xml.send 'w:tblPr' do
             xml.send 'w:tblStyle',   { 'w:val' => 'DefaultTable' }
-            xml.send 'w:bidiVisual', { 'w:val' => '0' }
-            xml.send 'w:jc',         { 'w:val' => model.table_align }
+            #xml.send 'w:bidiVisual', { 'w:val' => '0' }
             xml.send 'w:tblW',       { 'w:w'   => model.table_width.to_i, 'w:type' => 'dxa' }
             xml.send 'w:tblInd',     { 'w:w'   => '0', 'w:type' => 'dxa' }
+            #xml.send 'w:jc',         { 'w:val' => model.table_align }
             unless borders.empty?
               xml.send 'w:tblBorders' do
                 borders.each do |m|
