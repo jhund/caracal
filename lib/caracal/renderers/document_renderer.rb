@@ -118,7 +118,7 @@ module Caracal
                     xml.send 'pic:pic' do
                       xml.send 'pic:nvPicPr' do
                         xml.send 'pic:cNvPr', { id: rel_id, name: rel_name }
-                        xml.send 'pic:cNvPicPr', { preferRelativeSize: 0 }
+                        xml.send 'pic:cNvPicPr'
                       end
                       xml.send 'pic:blipFill' do
                         xml.send 'a:blip', { 'r:embed' => rel.formatted_id }
